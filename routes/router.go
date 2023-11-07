@@ -24,10 +24,13 @@ func InitRoutes() {
 			role.POST("/", RoleHandler.Create)
 		}
 
-		productCategory := api.Group("/category")
+		productCategory := api.Group("/product-category")
 		{
 			productCategory.GET("/", ProductCategoryHandler.GetAll)
 			productCategory.POST("/", ProductCategoryHandler.Create)
+			productCategory.PUT("/", ProductCategoryHandler.Update)
+			productCategory.DELETE("/:id", ProductCategoryHandler.Delete)
+			productCategory.GET("/:id", ProductCategoryHandler.GetByID)
 		}
 	}
 

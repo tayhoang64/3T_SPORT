@@ -20,7 +20,7 @@ func (ProductCategoryDAL ProductCategoryDAL) Create(productCategory *model.Produ
 func (ProductCategoryDAL ProductCategoryDAL) Update(productCategory *model.ProductCategory) error {
 	db := config.GetConnection()
 	var CategoryUpdate model.ProductCategory
-	if errGet := db.Model(model.ProductCategory{}).Where(model.ProductCategory{CategoryID: productCategory.CategoryID}).First(CategoryUpdate).Error; errGet != nil {
+	if errGet := db.Model(model.ProductCategory{}).Where(model.ProductCategory{CategoryID: productCategory.CategoryID}).First(&CategoryUpdate).Error; errGet != nil {
 		return errGet
 	}
 	CategoryUpdate = *productCategory
@@ -33,7 +33,7 @@ func (ProductCategoryDAL ProductCategoryDAL) Update(productCategory *model.Produ
 func (ProductCategoryDAL ProductCategoryDAL) Delete(id int32) error {
 	db := config.GetConnection()
 	var CategoryDelete model.ProductCategory
-	if errGet := db.Model(model.ProductCategory{}).Where(model.ProductCategory{CategoryID: id}).First(CategoryDelete).Error; errGet != nil {
+	if errGet := db.Model(model.ProductCategory{}).Where(model.ProductCategory{CategoryID: id}).First(&CategoryDelete).Error; errGet != nil {
 		return errGet
 	}
 	if errDelete := db.Delete(CategoryDelete).Error; errDelete != nil {
